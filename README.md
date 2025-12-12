@@ -4,7 +4,7 @@ A modern web application for exploring zodiac signs, horoscopes, and zodiac comp
 
 🔗 **Live Demo**: [https://zodiac-hub-web.vercel.app/](https://zodiac-hub-web.vercel.app/)
 
-## 👥 Group 2 - Team Members
+## 👥 Group 6 - Team Members
 
 | Name | Role |
 |------|------|
@@ -81,4 +81,4 @@ This project was created for educational purposes as part of CPRG306 Web Dev 2 c
 
 ---
 
-Made with ❤️ by Group 2
+Made with ❤️ by Group 6
