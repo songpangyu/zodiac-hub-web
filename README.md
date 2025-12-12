@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ✨ Zodiac Hub
 
-## Getting Started
+A modern web application for exploring zodiac signs, horoscopes, and zodiac compatibility.
 
-First, run the development server:
+🔗 **Live Demo**: [https://zodiac-hub-web.vercel.app/](https://zodiac-hub-web.vercel.app/)
 
+## 👥 Group 2 - Team Members
+
+| Name | Role |
+|------|------|
+| Pangyu Song | Developer |
+| Licheng Huang | Developer |
+| Mason Wang | Developer |
+
+## 📖 About This Project
+
+Zodiac Hub is a comprehensive astrology web application built as the final project for **CPRG306 Web Dev 2**. The platform offers:
+
+- 🌟 **Daily/Weekly/Monthly Horoscopes** - Get personalized horoscope readings for all 12 zodiac signs
+- 💕 **Zodiac Compatibility** - Check the compatibility between any two zodiac signs with detailed analysis
+- 📚 **Zodiac Encyclopedia** - Learn about personality traits, elements, and characteristics of each sign
+- 👤 **User Profiles** - Create an account to save your zodiac sign and preferences
+- 🔐 **Authentication** - Secure login with GitHub OAuth via Firebase
+
+## 📸 Screenshots
+
+### Zodiac Signs Overview
+![Zodiac Signs](/screenshot-home.png)
+
+### Compatibility Checker
+![Compatibility](/screenshot-compatibility.png)
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Styling**: CSS with custom design system
+- **Authentication**: Firebase Auth with GitHub OAuth
+- **Database**: Firebase Firestore
+- **Deployment**: Vercel
+- **API**: Horoscope App API
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ installed
+- Firebase project with Auth and Firestore enabled
+
+### Installation
+
+1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-repo/zodiac-hub-web.git
+cd zodiac-hub-web
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+3. Create `.env.local` file with your Firebase config
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Run the development server
+```bash
+npm run dev
+```
 
-## Learn More
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-To learn more about Next.js, take a look at the following resources:
+## 📄 License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project was created for educational purposes as part of CPRG306 Web Dev 2 course.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Made with ❤️ by Group 2
