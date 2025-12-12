@@ -25,10 +25,10 @@ Zodiac Hub is a comprehensive astrology web application built as the final proje
 ## 📸 Screenshots
 
 ### Zodiac Signs Overview
-![Zodiac Signs](/screenshot-home.png)
+![Zodiac Signs](public/screenshot-home.png)
 
 ### Compatibility Checker
-![Compatibility](/screenshot-compatibility.png)
+![Compatibility](public/screenshot-compatibility.png)
 
 ## 🛠️ Tech Stack
 
