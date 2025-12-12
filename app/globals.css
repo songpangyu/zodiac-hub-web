@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a1a;
+  --foreground: #e8e8ff;
+  --accent-gold: #ffd700;
+  --accent-purple: #9333ea;
+  --accent-blue: #3b82f6;
+  --glass-bg: rgba(20, 20, 50, 0.7);
+  --card-border: rgba(255, 215, 0, 0.2);
 }
 
 @theme inline {
@@ -12,15 +17,515 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 10, 26, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #9333ea, #3b82f6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #a855f7, #60a5fa);
+}
+
+/* Starfield Background */
+.starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+  background: 
+    radial-gradient(ellipse at center, #1a1a3a 0%, #0a0a1a 50%, #050510 100%);
+}
+
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+    radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+    radial-gradient(1px 1px at 90px 40px, #ddd, transparent),
+    radial-gradient(2px 2px at 160px 120px, #fff, transparent),
+    radial-gradient(1px 1px at 230px 80px, #eee, transparent),
+    radial-gradient(2px 2px at 300px 150px, #fff, transparent),
+    radial-gradient(1px 1px at 370px 50px, #ddd, transparent),
+    radial-gradient(2px 2px at 450px 200px, #fff, transparent),
+    radial-gradient(1px 1px at 520px 100px, #eee, transparent),
+    radial-gradient(2px 2px at 600px 180px, #fff, transparent);
+  background-repeat: repeat;
+  background-size: 700px 300px;
+  animation: twinkle 5s ease-in-out infinite;
+}
+
+.stars-2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(1px 1px at 50px 60px, #fff, transparent),
+    radial-gradient(2px 2px at 120px 140px, #eee, transparent),
+    radial-gradient(1px 1px at 200px 90px, #ddd, transparent),
+    radial-gradient(2px 2px at 280px 220px, #fff, transparent),
+    radial-gradient(1px 1px at 360px 170px, #eee, transparent),
+    radial-gradient(2px 2px at 440px 50px, #fff, transparent),
+    radial-gradient(1px 1px at 510px 250px, #ddd, transparent);
+  background-repeat: repeat;
+  background-size: 600px 350px;
+  animation: twinkle 7s ease-in-out infinite reverse;
+}
+
+.stars-3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(3px 3px at 100px 100px, #ffd700, transparent),
+    radial-gradient(2px 2px at 400px 300px, #9333ea, transparent),
+    radial-gradient(3px 3px at 700px 200px, #3b82f6, transparent),
+    radial-gradient(2px 2px at 250px 400px, #ffd700, transparent),
+    radial-gradient(3px 3px at 550px 100px, #9333ea, transparent);
+  background-repeat: repeat;
+  background-size: 900px 500px;
+  animation: twinkle 10s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Shooting Star */
+.shooting-star {
+  position: absolute;
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(90deg, #fff, transparent);
+  transform: rotate(-45deg);
+  animation: shoot 8s linear infinite;
+  opacity: 0;
+}
+
+.shooting-star:nth-child(1) {
+  top: 10%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.shooting-star:nth-child(2) {
+  top: 30%;
+  left: 60%;
+  animation-delay: 3s;
+}
+
+.shooting-star:nth-child(3) {
+  top: 50%;
+  left: 40%;
+  animation-delay: 6s;
+}
+
+@keyframes shoot {
+  0% {
+    transform: translateX(0) translateY(0) rotate(-45deg);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(500px) translateY(500px) rotate(-45deg);
+    opacity: 0;
+  }
+}
+
+/* Nebula Effect */
+.nebula {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 40%),
+    radial-gradient(ellipse at 40% 80%, rgba(255, 215, 0, 0.08) 0%, transparent 45%),
+    radial-gradient(ellipse at 70% 70%, rgba(147, 51, 234, 0.1) 0%, transparent 35%);
+  animation: nebula-pulse 20s ease-in-out infinite;
+}
+
+@keyframes nebula-pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* Glass Morphism Card */
+.glass-card {
+  background: rgba(20, 20, 50, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  border-radius: 16px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 215, 0, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(255, 215, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Zodiac Card Hover */
+.zodiac-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.zodiac-card:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+.zodiac-card:hover .zodiac-symbol {
+  animation: glow-pulse 1.5s ease-in-out infinite;
+  text-shadow: 0 0 30px currentColor, 0 0 60px currentColor;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #ffd700, #ff8c00, #ffd700);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s linear infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Hero Title */
+.hero-title {
+  background: linear-gradient(135deg, #ffd700 0%, #ffffff 50%, #ffd700 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+  text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Cosmic Button */
+.cosmic-btn {
+  position: relative;
+  background: linear-gradient(135deg, #9333ea, #3b82f6);
+  border: none;
+  padding: 12px 32px;
+  border-radius: 30px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+}
+
+.cosmic-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: 0.5s;
+}
+
+.cosmic-btn:hover::before {
+  left: 100%;
+}
+
+.cosmic-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(147, 51, 234, 0.5);
+}
+
+.cosmic-btn:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button */
+.cosmic-btn-secondary {
+  position: relative;
+  background: transparent;
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  padding: 12px 32px;
+  border-radius: 30px;
+  color: #ffd700;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.cosmic-btn-secondary:hover {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: #ffd700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+/* Input Fields */
+.cosmic-input {
+  background: rgba(20, 20, 50, 0.8);
+  border: 1px solid rgba(147, 51, 234, 0.3);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: #e8e8ff;
+  transition: all 0.3s ease;
+}
+
+.cosmic-input:focus {
+  outline: none;
+  border-color: #9333ea;
+  box-shadow: 0 0 15px rgba(147, 51, 234, 0.3);
+}
+
+.cosmic-input::placeholder {
+  color: rgba(232, 232, 255, 0.4);
+}
+
+/* Select Dropdown */
+.cosmic-select {
+  background: rgba(20, 20, 50, 0.8);
+  border: 1px solid rgba(147, 51, 234, 0.3);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: #e8e8ff;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239333ea'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+  padding-right: 40px;
+  transition: all 0.3s ease;
+}
+
+.cosmic-select:focus {
+  outline: none;
+  border-color: #9333ea;
+  box-shadow: 0 0 15px rgba(147, 51, 234, 0.3);
+}
+
+/* Compatibility Score Circle */
+.score-circle {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-circle svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.score-circle circle {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.score-circle .bg-circle {
+  stroke: rgba(147, 51, 234, 0.2);
+}
+
+.score-circle .progress-circle {
+  stroke: url(#scoreGradient);
+  stroke-dasharray: 502;
+  stroke-dashoffset: 502;
+  transition: stroke-dashoffset 1.5s ease-out;
+}
+
+/* Comment Section */
+.comment-item {
+  background: rgba(30, 30, 60, 0.5);
+  border: 1px solid rgba(147, 51, 234, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.3s ease;
+}
+
+.comment-item:hover {
+  border-color: rgba(147, 51, 234, 0.4);
+  background: rgba(30, 30, 60, 0.7);
+}
+
+/* Like Button */
+.like-btn {
+  transition: all 0.3s ease;
+}
+
+.like-btn:hover {
+  transform: scale(1.2);
+}
+
+.like-btn.liked {
+  color: #ff6b6b;
+  animation: heartbeat 0.6s ease;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.3); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.2); }
+}
+
+/* Loading Spinner */
+.cosmic-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(147, 51, 234, 0.2);
+  border-top: 3px solid #9333ea;
+  border-right: 3px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* Constellation Lines */
+.constellation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.constellation-line {
+  stroke: rgba(255, 215, 0, 0.3);
+  stroke-width: 1;
+  fill: none;
+}
+
+/* Toast/Notification */
+.cosmic-toast {
+  background: rgba(20, 20, 50, 0.95);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  padding: 16px 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  animation: toast-slide 0.3s ease;
+}
+
+@keyframes toast-slide {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Page Transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.4s ease;
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+  .glass-card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+  
+  .zodiac-card:hover {
+    transform: translateY(-5px) scale(1.01);
+  }
+}
+
+/* Moon Phases */
+.moon-phase {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #ffd700 50%, transparent 50%);
+  position: relative;
+  overflow: hidden;
+}
+
+.moon-phase::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  background: #0a0a1a;
+  border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+  transform-origin: left center;
+  animation: moon-cycle 10s linear infinite;
+}
+
+@keyframes moon-cycle {
+  0%, 100% { transform: rotateY(0deg); background: #0a0a1a; }
+  25% { transform: rotateY(90deg); }
+  50% { transform: rotateY(180deg); background: #ffd700; }
+  75% { transform: rotateY(270deg); }
 }
