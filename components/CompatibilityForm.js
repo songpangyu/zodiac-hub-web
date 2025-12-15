@@ -6,22 +6,22 @@ import { zodiacSigns } from "@/lib/zodiac-data";
 export default function CompatibilityForm({ onCalculate }) {
     const [sign1, setSign1] = useState("");
     const [sign2, setSign2] = useState("");
-    // [NEW] State for loading simulation
+    
     const [isCalculating, setIsCalculating] = useState(false);
 
-    // [UPDATED] Changed to async function to handle delay
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (sign1 && sign2) {
-            // [NEW] Start loading simulation
+            
             setIsCalculating(true);
             
-            // [NEW] Simulate "Reading the Stars" delay (1.5 seconds)
+            
             await new Promise(resolve => setTimeout(resolve, 1500));
             
             onCalculate(sign1, sign2);
             
-            // [NEW] Stop loading
+           
             setIsCalculating(false);
         }
     };
@@ -48,7 +48,7 @@ export default function CompatibilityForm({ onCalculate }) {
                         onChange={(e) => setSign1(e.target.value)}
                         className="cosmic-select w-full md:w-48"
                         required
-                        disabled={isCalculating} // [UPDATED] Disable input during calculation
+                        disabled={isCalculating} 
                     >
                         <option value="">Select Sign</option>
                         {zodiacSigns.map((sign) => (
